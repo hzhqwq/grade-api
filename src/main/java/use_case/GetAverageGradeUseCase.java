@@ -12,6 +12,13 @@ public final class GetAverageGradeUseCase {
 
     public float getAverageGrade(String course) {
         // TODO: Get average grade for all students in your team.
-        return 0.0f;
+        String[] team = this.gradeDB.getMyTeam().getMembers();
+        float total_grade = 0;
+        int total_member = 0;
+        for (String i: team){
+            total_member += 1;
+            total_grade += this.gradeDB.getGrade(i, course).getGrade();
+        }
+        return total_grade/total_member;
     }
 }
